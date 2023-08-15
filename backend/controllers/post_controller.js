@@ -5,7 +5,7 @@ exports.getPosts = async (req, res) => {
     res.status(200).json(posts)
 };
 
-exports.getPost = async (req, res) => {
+exports.getPost = async (req, res, next) => {
     const post = await Post.findById(req.params.id).populate('author').exec()
     if (post){
         return res.status(200).json(post)
