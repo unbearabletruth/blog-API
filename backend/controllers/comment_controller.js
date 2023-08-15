@@ -1,7 +1,7 @@
 const Comment = require("../models/comment");
 
 exports.getComments = async (req, res) => {
-    const comments = await Comment.find({post: req.params.id}).exec()
+    const comments = await Comment.find({post: req.params.id}).sort({timestamp: -1}).exec()
     res.status(200).json(comments)
 };
 

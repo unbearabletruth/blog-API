@@ -1,5 +1,6 @@
 import PostCard from "../components/PostCard"
 import { useEffect, useState } from 'react'
+import '../assets/styles/Home.css'
 
 function Home(){
   const [posts, setPosts] = useState()
@@ -22,6 +23,7 @@ function Home(){
         Blog API practice
       </div>
       <div id='content'>
+        <h1>Latest Posts</h1>
         {posts && <PostCard posts={posts} />}
       </div>
     </div>

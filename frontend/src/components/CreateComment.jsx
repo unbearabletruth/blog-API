@@ -40,21 +40,25 @@ function CreateComment() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="commentForm">
         <input 
           type="text" 
           placeholder="Enter name" 
           name="author"
           onChange={handleInput}
+          id="nameInput"
+          value={comment.author}
         >
         </input>
         <textarea 
           placeholder="Say it" 
           name="text" 
           onChange={handleInput}
+          id="textInput"
+          value={comment.text}
         >
         </textarea>
-        <button>Reply</button>
+        <button className="button">Reply</button>
       </form>
       {error && <p>{error}</p>}
     </>

@@ -11,17 +11,8 @@
   flex-direction: column;
 }
 
-#homePage{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  align-items: center;
-}
-
 #header{
   width: 100%;
-
   padding: 20px;
   background-color: white;
   border-bottom: 1px solid #d4d4d4;
@@ -30,44 +21,47 @@
   font-weight: bold;
 }
 
-#content{
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.button{
+  width: 80px;
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
+}
+
+.button:hover,
+.link:hover{
+  cursor: pointer;
+  background-color: #6366f1;
+}
+
+.link{
+  width: 120px;
+  height: 40px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  width: 50%;
-  height: 100%;
+  align-items: center;
 }
 
-.postCard{
-  width: 100%;
-  height: 100px;
-  display: flex;
-  padding: 20px;  
-  justify-content: space-between;
-  background-color: #fdf2f8;
-  border-bottom: 1px solid #d4d4d4;
-}
 
-.cardInfo{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.cardTitle{
-  color: #4f46e5;
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.cardText{
-  color: #525252;
-}
-
-.cardAuthor{
-  color: #525252;
-}
-
-.cardDate{
-  color: #525252;
-}

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from "react-router-dom";
 import Comment from '../components/Comment';
 import CreateComment from '../components/CreateComment';
+import '../assets/styles/Post.css'
+import { formatDate } from '../helperFunctions';
 
 function Post(){
   const [post, setPost] = useState()
@@ -29,28 +31,26 @@ function Post(){
     fetchComments()
   }, [])
 
-
   return(
-    <>
+    <div className='postPage'>
+      <Link to='/' className='link'>Home</Link>
       {post ?
-        <>
-          <p>Post details</p>
-          <div className='postCard'>
-            <div className='cardInfo'>
-              <p className='cardTitle'>{post.title}</p>
-              <p className='cardText'>{post.text}</p>
-              <p className='cardAuthor'>{post.author}</p>
-            </div>
-            <p className='cardDate'>{post.timestamp}</p>
+        <div className='post'>
+          <p className='postTitle'>{post.title}</p>
+          <div className='postAuthorAndDate'>
+            <p className='postAuthor'>{post.author}</p>
+            <p className='postDate'>{formatDate(post.timestamp)}</p>
           </div>
-        </>
+          <hr></hr>
+          <p className='postText'>{post.text}</p>
+        </div>
         :
         null
       }
-      {comments && <Comment comments={comments} />}
+      {comments && <p>{comments.length} Comments</p>}
       <CreateComment />
-      <Link to='/' className='link'>Home</Link>
-    </>
+      {comments && <Comment comments={comments} />}
+    </div>
   )
 }
 

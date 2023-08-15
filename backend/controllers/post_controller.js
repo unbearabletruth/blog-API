@@ -1,7 +1,7 @@
 const Post = require("../models/post");
 
 exports.getPosts = async (req, res) => {
-    const posts = await Post.find().populate('author').exec()
+    const posts = await Post.find().populate('author').sort({timestamp: -1}).exec()
     res.status(200).json(posts)
 };
 

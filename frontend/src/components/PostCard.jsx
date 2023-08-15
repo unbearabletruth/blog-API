@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatDate } from '../helperFunctions';
 
 function PostCard({posts}){
   return(
@@ -10,7 +11,7 @@ function PostCard({posts}){
             <p className='cardText'>{post.text}</p>
             <p className='cardAuthor'>{post.author}</p>
           </div>
-          <p className='cardDate'>{post.timestamp}</p>
+          <p className='cardDate'>{formatDate(post.timestamp)}</p>
         </Link>
       )
     })
