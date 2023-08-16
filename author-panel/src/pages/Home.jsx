@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Home.css'
+import { useLogout } from "../hooks/useLogout";
 
 function Home() {
   const [posts, setPosts] = useState()
+  const {logout} = useLogout()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,8 +20,16 @@ function Home() {
     fetchPosts()
   }, [])
 
+  const handleClick = () => {
+    logout()
+  }
+
   return (
     <div>
+      <nav>
+        <button onClick={handleClick}>Log out</button>
+        <p>Logged in</p>
+      </nav>
       {posts && posts.map(post => {
         return (
           <Link to={`posts/${post._id}`} key={post._id} className="postCard">

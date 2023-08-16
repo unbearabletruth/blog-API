@@ -35,9 +35,6 @@ function Post(){
         :
         null
       }
-      {comments && <p>{comments.length} Comments</p>}
-      <CreateComment />
-      {comments && <Comment comments={comments} />}
     </div>
   )
 }

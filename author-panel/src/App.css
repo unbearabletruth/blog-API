@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 a:link {
   text-decoration: none;
 }
@@ -12,4 +18,31 @@ a:hover {
 
 a:active {
   text-decoration: none;
+}
+
+.button{
+  width: 80px;
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
+}
+
+.button:hover,
+.link:hover{
+  cursor: pointer;
+  background-color: #6366f1;
+}
+
+.link{
+  width: 120px;
+  height: 40px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
