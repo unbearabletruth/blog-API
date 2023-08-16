@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useCommentContext } from "../hooks/useCommentContext";
 
 function CreateComment() {
+  const { dispatch } = useCommentContext()
   const [comment, setComment] = useState({
     text: '',
     author: '',
@@ -35,6 +37,7 @@ function CreateComment() {
         author: '',
       })
       setError(null)
+      dispatch({type: 'create_comment', payload: json})
     }
   }
 

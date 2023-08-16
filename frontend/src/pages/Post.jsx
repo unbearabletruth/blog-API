@@ -4,10 +4,11 @@ import Comment from '../components/Comment';
 import CreateComment from '../components/CreateComment';
 import '../assets/styles/Post.css'
 import { formatDate } from '../helperFunctions';
+import { useCommentContext } from '../hooks/useCommentContext';
 
 function Post(){
   const [post, setPost] = useState()
-  const [comments, setComments] = useState()
+  const {comments, dispatch} = useCommentContext()
   const {id} = useParams();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function Post(){
       const response = await fetch(`http://localhost:3000/posts/${id}/comments`)
       const json = await response.json()
       if (response.ok) {
-        setComments(json)
+        dispatch({type: 'set_comments', payload: json})
       }
     }
 
