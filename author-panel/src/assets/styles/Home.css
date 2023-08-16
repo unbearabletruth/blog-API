@@ -1,0 +1,47 @@
+.postCard{
+    width: 750px;
+    height: 125px;
+    display: flex;
+    padding: 20px;  
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #d4d4d4;
+    transition: background-color 0.2s ease-out;
+}
+
+.postCard:hover{
+    background-color: #fafafa;
+}
+  
+.cardInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+  
+.cardTitle{
+    color: #4f46e5;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+  
+.cardText{
+    color: #525252;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 550px;
+    flex: 1;
+}
+  
+.cardAuthor{
+    color: #525252;
+}
+  
+.cardDate{
+    color: #525252;
+}
+
+.cardPublished{
+    color: #525252;
+}
