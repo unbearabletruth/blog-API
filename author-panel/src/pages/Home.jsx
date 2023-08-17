@@ -2,11 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Home.css'
-import { useLogout } from "../hooks/useLogout";
 
-function Home() {
+function Home({user, logoutUser}) {
   const [posts, setPosts] = useState()
-  const {logout} = useLogout()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -21,14 +19,19 @@ function Home() {
   }, [])
 
   const handleClick = () => {
-    logout()
+    localStorage.removeItem('user')
+    logoutUser()
   }
 
   return (
     <div>
       <nav>
         <button onClick={handleClick}>Log out</button>
-        <p>Logged in</p>
+        {user ?
+          <p>Logged in</p>
+          :
+          <p>please log in</p>
+        }
       </nav>
       {posts && posts.map(post => {
         return (

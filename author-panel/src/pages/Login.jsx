@@ -1,24 +1,52 @@
 import { useState } from "react"
 import '../assets/styles/Login.css'
-import { useLogin } from "../hooks/useLogin"
+import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const [user, setUser] = useState({
+function Login({user, handleUser}) {
+  let navigate = useNavigate();  
+  const [error, setError] = useState() 
+  const [isLoading, setIsLoading] = useState()
+  const [loginData, setLoginData] = useState({
     username: '',
     password: ''
   })
-  const {login, error, isLoading} = useLogin()
 
   const handleInput = (e) => {
-    setUser({
-      ...user,
+    setLoginData({
+      ...loginData,
       [e.target.name] : e.target.value
     })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await login(user)
+    
+    const login = async (user) => {
+      setIsLoading(true)
+      setError(null)
+  
+      const response = await fetch(`http://localhost:3000/user/login`, {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      const json = await response.json()
+      if (!response.ok) {
+        setIsLoading(false)
+        setError(json.error)
+      }
+      if (response.ok) {
+        localStorage.setItem('user', JSON.stringify(json))
+        console.log(json)
+        handleUser(json)
+        setIsLoading(false)
+        navigate('/');
+      }
+    }
+
+    await login(loginData)
   }
 
   return (

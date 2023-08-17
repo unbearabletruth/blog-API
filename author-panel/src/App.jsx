@@ -3,17 +3,26 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Post from './pages/Post';
 import Login from './pages/Login';
-import { useAuthContext } from './hooks/useAuthContext';
+import { useState } from 'react';
 
 function App() {
-  const {user} = useAuthContext()
+  const initializeState = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(initializeState)
+
+  const handleUser = (loginData) => {
+    setUser(loginData)
+  }
+
+  const logoutUser = () => {
+    setUser(null)
+  }
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to='/login'/>} />    
-        <Route path="/posts/:id" element={user ? <Post /> : <Navigate to='/login'/>} />  
-        <Route path="/login" element={<Login />} />              
+        <Route path="/" element={user ? <Home user={user} logoutUser={logoutUser}/> : <Navigate to='/login'/>} />    
+        <Route path="/posts/:id" element={user ? <Post user={user}/> : <Navigate to='/login'/>} />  
+        <Route path="/login" element={<Login user={user} handleUser={handleUser}/>} />              
       </Routes>
     </BrowserRouter>
   )
