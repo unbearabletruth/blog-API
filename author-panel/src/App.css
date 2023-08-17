@@ -29,8 +29,19 @@ a:active {
   color: white;
 }
 
+.smallButton{
+  width: 50px;
+  height: 20px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 0.7rem;
+}
+
 .button:hover,
-.link:hover{
+.link:hover,
+.smallButton:hover{
   cursor: pointer;
   background-color: #6366f1;
 }

@@ -27,3 +27,66 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.commentCard{
+    width: 750px;
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;  
+    gap: 20px;
+    background-color: white;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.commentInfo{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.commentAuthorAndDate{
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentAuthor{
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+.commentDate{
+    font-size: 0.8rem;
+}
+
+.commentButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#commentForm{
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    gap: 10px;
+}
+
+#nameInput{
+    border: 1px solid #d4d4d4;
+    height: 25px;
+    padding: 0px 5px;
+}
+
+#textInput{
+    border: 1px solid #d4d4d4;
+    padding: 5px;
+    height: 100px;
+}
+
+#nameInput:focus,
+#textInput:focus{
+    outline: none;
+    border: 2px solid #4f46e5;
+}

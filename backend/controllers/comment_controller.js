@@ -27,3 +27,13 @@ exports.deleteComment = async (req, res) => {
     }
     res.status(400).json({error: 'No such comment'})
 }
+
+exports.updateComment = async (req, res) => {
+    const comment = await Comment.findByIdAndUpdate(req.params.commentId, {
+        ...req.body,
+    })
+    if (comment){
+        return res.status(200).json(comment)
+    }
+    res.status(400).json({error: 'No such comment'})
+}

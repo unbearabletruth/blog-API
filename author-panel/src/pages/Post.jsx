@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from "react-router-dom";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Post.css'
+import Comments from '../components/comments';
 
 function Post(){
   const [postData, setPostData] = useState()
@@ -117,6 +118,7 @@ function Post(){
           null
         }
         {error && <p>{error}</p>}
+        {postData && <Comments postId={postData._id} />}
       </div>
   )
 }
