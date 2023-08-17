@@ -1,8 +1,10 @@
 import { useState } from "react";
 import '../assets/styles/PostForm.css'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function NewPost({user}) {
+function PostForm({user}) {
+  let navigate = useNavigate();  
   const [post, setPost] = useState({
     title: '',
     text: '',
@@ -37,6 +39,7 @@ function NewPost({user}) {
         text: ''
       })
       setError(null)
+      navigate('/');
     }
   }
 
@@ -68,4 +71,4 @@ function NewPost({user}) {
   )
 }
 
-export default NewPost
+export default PostForm
