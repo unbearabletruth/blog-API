@@ -33,6 +33,7 @@ function Home({user, logoutUser}) {
           <p>please log in</p>
         }
       </nav>
+      <Link className="button" to="/posts/new">Write a new Post</Link>
       {posts && posts.map(post => {
         return (
           <Link to={`posts/${post._id}`} key={post._id} className="postCard">

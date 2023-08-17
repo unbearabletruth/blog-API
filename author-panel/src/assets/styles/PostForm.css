@@ -1,0 +1,25 @@
+#postForm{
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    gap: 10px;
+}
+
+#titleInput{
+    border: 1px solid #d4d4d4;
+    height: 25px;
+    padding: 0px 5px;
+}
+
+#textInput{
+    border: 1px solid #d4d4d4;
+    padding: 5px;
+    height: 100px;
+}
+
+#titleInput:focus,
+#textInput:focus{
+    outline: none;
+    border: 2px solid #4f46e5;
+}
+

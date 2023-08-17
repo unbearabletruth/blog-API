@@ -2,7 +2,7 @@ import { useState } from "react"
 import '../assets/styles/Login.css'
 import { useNavigate } from "react-router-dom";
 
-function Login({user, handleUser}) {
+function Login({handleUser}) {
   let navigate = useNavigate();  
   const [error, setError] = useState() 
   const [isLoading, setIsLoading] = useState()

@@ -17,7 +17,7 @@ exports.createPost = async (req, res) => {
     const newPost = new Post({
         title: req.body.title,
         text: req.body.text,
-        author: 'me', // make use in server
+        author: req.body.author,
         timestamp: new Date(),
         is_published: false
     })
