@@ -2,6 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav{
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-bottom: 1px solid #d4d4d4;
+  color: #4f46e5;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+#loginBlock{
+  font-size: 1rem;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 a:link {
@@ -29,6 +55,35 @@ a:active {
   color: white;
 }
 
+.bigButton{
+  width: 250px;
+  height: 60px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #4f46e5;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.shallowButton,
+.shallowButtonBig{
+  width: 80px;
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #4f46e5;
+  color: #4f46e5;
+}
+
+.shallowButtonBig{
+  width: 100px;
+  height: 40px;
+}
+
 .smallButton{
   width: 50px;
   height: 20px;
@@ -41,9 +96,16 @@ a:active {
 
 .button:hover,
 .link:hover,
-.smallButton:hover{
+.smallButton:hover,
+.bigButton:hover{
   cursor: pointer;
   background-color: #6366f1;
+}
+
+.shallowButton:hover,
+.shallowButtonBig:hover{
+  cursor: pointer;
+  background-color: #f3f6ff;
 }
 
 .link{

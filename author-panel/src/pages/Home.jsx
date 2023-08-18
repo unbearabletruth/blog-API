@@ -5,6 +5,7 @@ import '../assets/styles/Home.css'
 
 function Home({user, logoutUser}) {
   const [posts, setPosts] = useState()
+  const [error, setError] = useState()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -17,40 +18,73 @@ function Home({user, logoutUser}) {
 
     fetchPosts()
   }, [])
+ 
+  const updatePost = async (e, post) => {
+    e.preventDefault()
+    let postToPublish = {...post}
+    postToPublish.is_published = postToPublish.is_published ? false : true
+    console.log(post, postToPublish)
+    const response = await fetch(`http://localhost:3000/posts/${post._id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(postToPublish),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    const json = await response.json()
+    if (!response.ok) {
+      setError(json.error)
+    }
+    if (response.ok) {
+      setPosts(posts.map(p => {
+        if (p._id === post._id) {
+          return {
+            ...p, 
+            is_published: postToPublish.is_published
+          };
+        }
+        return p;
+      }));
+      setError(null)
+    }
+  }
 
   const handleClick = () => {
     localStorage.removeItem('user')
     logoutUser()
   }
-
+  (console.log('rerender', posts))
   return (
-    <div>
+    <div id="homePage">
       <nav>
-        <button onClick={handleClick}>Log out</button>
-        {user ?
-          <p>Logged in</p>
-          :
-          <p>please log in</p>
-        }
+        <p>Admin panel</p>
+        <div id="loginBlock">
+          <button className="shallowButton" onClick={handleClick}>Log out</button>
+        </div>
       </nav>
-      <Link className="button" to="/posts/new">Write a new Post</Link>
-      {posts && posts.map(post => {
-        return (
-          <Link to={`posts/${post._id}`} key={post._id} className="postCard">
-            <div className='cardInfo'>
-              <p className='cardTitle'>{post.title}</p>
-              <p className='cardText'>{post.text}</p>
-              <p className='cardAuthor'>{post.author}</p>
+      <div id="homeContent">
+        <Link className="bigButton" to="/posts/new">Write a new Post</Link>
+        {posts && posts.map(post => {
+          return (
+            <div key={post._id}>
+              <Link to={`posts/${post._id}`} className="postCard">
+                <div className='cardInfo'>
+                  <p className='cardTitle'>{post.title}</p>
+                  <p className='cardText'>{post.text}</p>
+                  <p className='cardAuthor'>{post.author}</p>
+                </div>
+                <p className='cardDate'>{formatDate(post.timestamp)}</p>
+                {post.is_published ?
+                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>Published</button>
+                  :
+                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>To be published</button>
+                }
+              </Link>
+              {error && <p>{error}</p>}
             </div>
-            <p className='cardDate'>{formatDate(post.timestamp)}</p>
-            {post.is_published ?
-              <p className='cardPublished'>Published</p>
-              :
-              <p className='cardPublished'>To be published</p>
-            }
-          </Link>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }
