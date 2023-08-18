@@ -11,6 +11,7 @@ function Post(){
   const [status, setStatus] = useState()
   const [isForm, setIsForm] = useState(false)
   const [error, setError] = useState()
+  const [popup, setPopup] = useState(false)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -32,6 +33,7 @@ function Post(){
     if (response.ok) {
       setPostData(null)
       setStatus('Deleted')
+      setPopup(false)
     }
   }
 
@@ -68,24 +70,18 @@ function Post(){
 
   return(
       <div className='postPage'>
-        <Link to='/' className='link'>Home</Link>
-        {postData ?
-          <>
-            <div className='post'>
-              <p className='postTitle'>{postData.title}</p>
-              <div className='postAuthorAndDate'>
-                <p className='postAuthor'>{postData.author}</p>
-                <p className='postDate'>{formatDate(postData.timestamp)}</p>
+        {popup && 
+          <div className='popupWrapper'>
+            <div className='popup'>
+              <p>Delete this post?</p>
+              <div className='popupButtons'>
+                <button className='shallowButton' onClick={() => setPopup(false)}>Cancel</button>
+                <button className='button' onClick={deletePost}>Delete</button>
               </div>
-              <hr></hr>
-              <p className='postText'>{postData.text}</p>
             </div>
-            <button className='button' onClick={deletePost}>Delete</button>
-            <button className='button' onClick={() => setIsForm(true)}>Update</button>
-          </>
-          :
-          null
+          </div>
         }
+        <Link to='/' className='link'>Home</Link>
         {postData && isForm ?
           <form onSubmit={updatePost} id="postForm">
             <input 
@@ -101,12 +97,31 @@ function Post(){
               placeholder="Say it" 
               name="text" 
               onChange={handleInput}
-              id="textInput"
+              id="textPostInput"
               value={post.text}
             >
             </textarea>
-            <button className="button">Post</button>
+            <div className='postFormButtons'>
+              <button type='button' className='shallowButton' onClick={() => setIsForm(false)}>Cancel</button>
+              <button className="button">Post</button>
+            </div>
           </form>
+          : postData ?
+          <>
+            <div className='post'>
+              <p className='postTitle'>{postData.title}</p>
+              <div className='postAuthorAndDate'>
+                <p className='postAuthor'>{postData.author}</p>
+                <p className='postDate'>{formatDate(postData.timestamp)}</p>
+              </div>
+              <hr></hr>
+              <p className='postText'>{postData.text}</p>
+            </div>
+            <div className='postButtons'>
+              <button className='shallowButton' onClick={() => setPopup(true)}>Delete</button>
+              <button className='button' onClick={() => setIsForm(true)}>Update</button>
+            </div>
+          </>
           :
           null
         }
