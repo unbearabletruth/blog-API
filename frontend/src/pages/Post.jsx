@@ -48,7 +48,7 @@ function Post(){
         :
         null
       }
-      {comments && <p>{comments.length} Comments</p>}
+      {comments && <p>{comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}</p>}
       <CreateComment />
       {comments && <Comment comments={comments} />}
     </div>

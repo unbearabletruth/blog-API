@@ -3,10 +3,7 @@ import { useState, useEffect } from 'react';
 
 function Comments({postId}) {
   const [comments, setComments] = useState()
-  const [commentInput, setCommentInput] = useState({
-    text: '',
-    author: '',
-  })
+  const [commentInput, setCommentInput] = useState()
   const [error, setError] = useState()
 
   useEffect(() => {
@@ -26,7 +23,7 @@ function Comments({postId}) {
       method: 'DELETE'
     })
     if (response.ok) {
-      console.log(`deleted with id: ${id}`)
+      setComments(comments.filter(comment => comment._id !== id))
     }
   }
 
@@ -45,11 +42,18 @@ function Comments({postId}) {
       setError(json.error)
     }
     if (response.ok) {
-      setCommentInput({
-        text: '',
-        author: '',
-      })
+      setCommentInput(null)
       setError(null)
+      setComments(comments.map(comment => {
+        if (comment._id === id) {
+          return {
+            ...comment, 
+            text: commentInput.text,
+            author: commentInput.author
+          };
+        }
+        return comment;
+      }));
     }
   }
 
@@ -65,21 +69,7 @@ function Comments({postId}) {
       {error && <p>{error}</p>}
       {comments && comments.map(comment => {
         return(
-          comment._id !== commentInput._id ?
-            <div key={comment._id} className='commentCard'>
-              <div className='commentInfo'>
-                <div className='commentAuthorAndDate'>
-                  <p className='commentAuthor'>{comment.author}</p>
-                  <p className='commentDate'>{formatDate(comment.timestamp)}</p>
-                </div>
-                <p className='commentText'>{comment.text}</p>
-              </div>
-              <div className='commentButtons'>
-                <button className='smallButton' onClick={() => deleteComment(comment._id)}>Delete</button>
-                <button className='smallButton' onClick={() => setCommentInput(comment)}>Update</button>
-              </div>
-            </div>
-            :
+          commentInput && comment._id === commentInput._id ?
             <form key={comment._id} onSubmit={(e) => updateComment(e, commentInput._id)} id="commentForm">
               <input 
                 type="text" 
@@ -98,8 +88,25 @@ function Comments({postId}) {
                 value={commentInput.text}
               >
               </textarea>
-              <button className="button">Change</button>
+              <div className='postFormButtons'>
+                <button type='button' className='shallowButton' onClick={() => setCommentInput(null)}>Cancel</button>
+                <button className="button">Change</button>
+              </div>
             </form>
+            :
+            <div key={comment._id} className='commentCard'>
+              <div className='commentInfo'>
+                <div className='commentAuthorAndDate'>
+                  <p className='commentAuthor'>{comment.author}</p>
+                  <p className='commentDate'>{formatDate(comment.timestamp)}</p>
+                </div>
+                <p className='commentText'>{comment.text}</p>
+              </div>
+              <div className='commentButtons'>
+                <button className='smallButton' onClick={() => deleteComment(comment._id)}>Delete</button>
+                <button className='smallButton' onClick={() => setCommentInput(comment)}>Update</button>
+              </div>
+            </div>
           )
       })}
     </>

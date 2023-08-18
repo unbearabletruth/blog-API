@@ -31,7 +31,7 @@
 .postFormButtons,
 .popupButtons{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .postButtons{

@@ -20,10 +20,10 @@ function Home(){
   return(
     <div id='homePage'>
       <div id='header'>
-        Blog API practice
+        Admin's blog
       </div>
       <div id='content'>
-        <h1>Latest Posts</h1>
+        <h1>All Posts</h1>
         {posts && <PostCard posts={posts} />}
       </div>
     </div>

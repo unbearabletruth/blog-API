@@ -51,6 +51,7 @@ function Post(){
       setError(json.error)
     }
     if (response.ok) {
+      setPostData(post)
       setPost({
         ...post,
         title: '',
@@ -58,6 +59,7 @@ function Post(){
       })
       setError(null)
       setStatus('Updated')
+      setIsForm(false)
     }
   }
 
@@ -103,7 +105,7 @@ function Post(){
             </textarea>
             <div className='postFormButtons'>
               <button type='button' className='shallowButton' onClick={() => setIsForm(false)}>Cancel</button>
-              <button className="button">Post</button>
+              <button className="button">Update</button>
             </div>
           </form>
           : postData ?
@@ -118,8 +120,8 @@ function Post(){
               <p className='postText'>{postData.text}</p>
             </div>
             <div className='postButtons'>
-              <button className='shallowButton' onClick={() => setPopup(true)}>Delete</button>
-              <button className='button' onClick={() => setIsForm(true)}>Update</button>
+              <button className='bigButton' onClick={() => setPopup(true)}>Delete Post</button>
+              <button className='bigButton' onClick={() => setIsForm(true)}>Update Post</button>
             </div>
           </>
           :

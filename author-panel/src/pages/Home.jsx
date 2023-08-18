@@ -63,7 +63,7 @@ function Home({logoutUser}) {
         </div>
       </nav>
       <div id="homeContent">
-        <Link className="bigButton" to="/posts/new">Write a new Post</Link>
+        <Link className="bigButton" to="/posts/new">New Post</Link>
         {posts && posts.map(post => {
           return (
             <div key={post._id}>
@@ -75,9 +75,9 @@ function Home({logoutUser}) {
                 </div>
                 <p className='cardDate'>{formatDate(post.timestamp)}</p>
                 {post.is_published ?
-                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>Published</button>
+                  <button className='shallowButtonGreen' onClick={(e) => updatePost(e, post)}>Unpublish</button>
                   :
-                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>Publish</button>
+                  <button className='shallowButtonRed' onClick={(e) => updatePost(e, post)}>Publish</button>
                 }
               </Link>
               {error && <p>{error}</p>}
