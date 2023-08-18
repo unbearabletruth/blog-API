@@ -4,7 +4,7 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #c7d2fe;
+    background-color: #e6ebff;
 }
 
 #loginForm{
@@ -15,12 +15,21 @@
     background-color: white;
     justify-content: space-between;
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid #d4d4d4;
+    color: #404040;
 }
 
 .formInput{
     height: 30px;
     border-radius: 5px;
     border: 1px solid #a3a3a3;
+    padding: 0px 5px;
+    background-color: white;
 }
+
+.formInput:focus{
+    outline: none;
+    border: 2px solid #4f46e5;
+}
+

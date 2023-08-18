@@ -1,3 +1,13 @@
+#postFormPage{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 20px;
+}
+
 #postForm{
     display: flex;
     flex-direction: column;
@@ -7,18 +17,20 @@
 
 #titleInput{
     border: 1px solid #d4d4d4;
-    height: 25px;
+    height: 40px;
     padding: 0px 5px;
+    font-size: 1.2rem;
 }
 
-#textInput{
+#textPostInput{
     border: 1px solid #d4d4d4;
     padding: 5px;
-    height: 100px;
+    height: 75vh;
+    font-size: 1rem;
 }
 
 #titleInput:focus,
-#textInput:focus{
+#textPostInput:focus{
     outline: none;
     border: 2px solid #4f46e5;
 }

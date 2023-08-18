@@ -44,7 +44,7 @@ function PostForm({user}) {
   }
 
   return (
-    <>
+    <div id="postFormPage">
       <Link to='/' className='link'>Home</Link>
       <form onSubmit={handleSubmit} id="postForm">
         <input 
@@ -60,14 +60,14 @@ function PostForm({user}) {
           placeholder="Say it" 
           name="text" 
           onChange={handleInput}
-          id="textInput"
+          id="textPostInput"
           value={post.text}
         >
         </textarea>
         <button className="button">Post</button>
       </form>
       {error && <p>{error}</p>}
-    </>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Home.css'
 
-function Home({user, logoutUser}) {
+function Home({logoutUser}) {
   const [posts, setPosts] = useState()
   const [error, setError] = useState()
 
@@ -23,7 +23,7 @@ function Home({user, logoutUser}) {
     e.preventDefault()
     let postToPublish = {...post}
     postToPublish.is_published = postToPublish.is_published ? false : true
-    console.log(post, postToPublish)
+
     const response = await fetch(`http://localhost:3000/posts/${post._id}`, {
       method: 'PATCH',
       body: JSON.stringify(postToPublish),
@@ -53,7 +53,7 @@ function Home({user, logoutUser}) {
     localStorage.removeItem('user')
     logoutUser()
   }
-  (console.log('rerender', posts))
+
   return (
     <div id="homePage">
       <nav>
@@ -77,7 +77,7 @@ function Home({user, logoutUser}) {
                 {post.is_published ?
                   <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>Published</button>
                   :
-                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>To be published</button>
+                  <button className='shallowButtonBig' onClick={(e) => updatePost(e, post)}>Publish</button>
                 }
               </Link>
               {error && <p>{error}</p>}

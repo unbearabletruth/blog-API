@@ -5,6 +5,7 @@ function PostCard({posts}){
   return(
     posts && posts.map(post => {
       return(
+        post.is_published &&
         <Link to={`posts/${post._id}`} key={post._id} className='postCard'>
           <div className='cardInfo'>
             <p className='cardTitle'>{post.title}</p>

@@ -53,9 +53,9 @@ function Login({handleUser}) {
     <div id="formWrapper">
       <form id="loginForm" onSubmit={handleSubmit}>
         <label htmlFor='username'>Username</label>
-        <input className="formInput" name="username" onChange={handleInput}></input>
+        <input type='text' className="formInput" name="username" onChange={handleInput}></input>
         <label htmlFor='password'>Password</label>
-        <input className="formInput" name="password" onChange={handleInput}></input>
+        <input type='password' className="formInput" name="password" onChange={handleInput}></input>
         <button disabled={isLoading} className="button">Log in</button>
         {error && <p>{error}</p>}
       </form>
