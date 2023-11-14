@@ -31,7 +31,7 @@ exports.deleteComment = async (req, res) => {
 exports.updateComment = async (req, res) => {
     const comment = await Comment.findByIdAndUpdate(req.params.commentId, {
         ...req.body,
-    })
+    }, { new: true })
     if (comment){
         return res.status(200).json(comment)
     }

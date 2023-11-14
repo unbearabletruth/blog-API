@@ -32,7 +32,7 @@ exports.createPost = async (req, res) => {
 exports.updatePost = async (req, res) => {
     const post = await Post.findByIdAndUpdate(req.params.id, {
         ...req.body
-    })
+    }, { new: true })
     if (post){
         return res.status(200).json(post)
     }
