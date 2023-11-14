@@ -4,13 +4,22 @@ import { formatDate } from '../helperFunctions';
 import '../assets/styles/Post.css'
 import Comments from '../components/comments';
 
+export type PostData = {
+  author: string
+  is_published: Boolean
+  text: string
+  title: string
+  _id: string
+  timestamp: string
+}
+
 function Post(){
-  const [postData, setPostData] = useState(null)
-  const [post, setPost] = useState()
+  const [postData, setPostData] = useState<PostData | null>(null)
+  const [post, setPost] = useState(null)
   const { id } = useParams();
   const [status, setStatus] = useState('')
   const [isForm, setIsForm] = useState(false)
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
   const [popup, setPopup] = useState(false)
 
   useEffect(() => {

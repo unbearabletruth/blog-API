@@ -6,10 +6,10 @@ import PostForm from './pages/PostForm';
 import Login from './pages/Login';
 import { useState } from 'react';
 
-export type User = null | {
+export type User = {
   username: string
   password: string
-}
+} | null
 
 function App() {
   const getUserFromLocalStorage = localStorage.getItem("user")

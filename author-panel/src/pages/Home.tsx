@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Home.css'
+import { PostData } from "./Post";
 
 type HomeProps = {
   logoutUser: () => void
 }
 
 function Home({logoutUser}: HomeProps) {
-  const [posts, setPosts] = useState()
-  const [error, setError] = useState()
+  const [posts, setPosts] = useState<PostData[]>([])
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,7 +24,7 @@ function Home({logoutUser}: HomeProps) {
     fetchPosts()
   }, [])
  
-  const updatePost = async (e, post) => {
+  const updatePost = async (e, post: PostData) => {
     e.preventDefault()
     let postToPublish = {...post}
     postToPublish.is_published = postToPublish.is_published ? false : true

@@ -5,9 +5,23 @@ type CommentsProps = {
   postId: string
 }
 
+type Comment = {
+  author: string
+  text: string
+  post: string
+  timestamp: string
+  _id: string
+}
+
+type CommentInput = {
+  author: string
+  text: string
+  _id: string
+} | null
+
 function Comments({postId}: CommentsProps) {
-  const [comments, setComments] = useState([])
-  const [commentInput, setCommentInput] = useState()
+  const [comments, setComments] = useState<Comment[]>([])
+  const [commentInput, setCommentInput] = useState<CommentInput>(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -33,7 +47,6 @@ function Comments({postId}: CommentsProps) {
 
   const updateComment = async (e, id: string) => {
     e.preventDefault()
-    console.log(commentInput)
     const response = await fetch(`http://localhost:3000/posts/${postId}/comments/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(commentInput),
@@ -52,8 +65,8 @@ function Comments({postId}: CommentsProps) {
         if (comment._id === id) {
           return {
             ...comment, 
-            text: commentInput.text,
-            author: commentInput.author
+            text: commentInput!.text,
+            author: commentInput!.author
           };
         }
         return comment;
@@ -65,7 +78,7 @@ function Comments({postId}: CommentsProps) {
     setCommentInput({
       ...commentInput,
       [e.target.name] : e.target.value
-    })
+    } as CommentInput)
   }
 
   return (
