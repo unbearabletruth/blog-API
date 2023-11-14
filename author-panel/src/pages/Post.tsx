@@ -5,10 +5,10 @@ import '../assets/styles/Post.css'
 import Comments from '../components/comments';
 
 function Post(){
-  const [postData, setPostData] = useState()
+  const [postData, setPostData] = useState(null)
   const [post, setPost] = useState()
-  const {id} = useParams();
-  const [status, setStatus] = useState()
+  const { id } = useParams();
+  const [status, setStatus] = useState('')
   const [isForm, setIsForm] = useState(false)
   const [error, setError] = useState()
   const [popup, setPopup] = useState(false)

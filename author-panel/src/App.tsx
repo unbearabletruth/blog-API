@@ -6,11 +6,17 @@ import PostForm from './pages/PostForm';
 import Login from './pages/Login';
 import { useState } from 'react';
 
-function App() {
-  const initializeState = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState(initializeState)
+export type User = null | {
+  username: string
+  password: string
+}
 
-  const handleUser = (loginData) => {
+function App() {
+  const getUserFromLocalStorage = localStorage.getItem("user")
+  const initializeState = getUserFromLocalStorage ? JSON.parse(getUserFromLocalStorage) : null
+  const [user, setUser] = useState<User>(initializeState)
+
+  const handleUser = (loginData: User) => {
     setUser(loginData)
   }
 

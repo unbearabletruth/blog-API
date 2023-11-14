@@ -1,12 +1,22 @@
 import { useState } from "react"
 import '../assets/styles/Login.css'
 import { useNavigate } from "react-router-dom";
+import { User } from "../App";
 
-function Login({handleUser}) {
+type LoginProps = {
+  handleUser: (loginData: User) => void
+}
+
+type LoginData = {
+  username: string
+  password: string
+}
+
+function Login({handleUser}: LoginProps) {
   let navigate = useNavigate();  
-  const [error, setError] = useState() 
-  const [isLoading, setIsLoading] = useState()
-  const [loginData, setLoginData] = useState({
+  const [error, setError] = useState(null) 
+  const [isLoading, setIsLoading] = useState(false)
+  const [loginData, setLoginData] = useState<LoginData>({
     username: '',
     password: ''
   })
@@ -21,7 +31,7 @@ function Login({handleUser}) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const login = async (user) => {
+    const login = async (user: User) => {
       setIsLoading(true)
       setError(null)
   

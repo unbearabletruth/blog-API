@@ -2,15 +2,20 @@ import { useState } from "react";
 import '../assets/styles/PostForm.css'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { User } from "../App";
 
-function PostForm({user}) {
+type PostFormProps = {
+  user: User
+}
+
+function PostForm({user}: PostFormProps) {
   let navigate = useNavigate();  
   const [post, setPost] = useState({
     title: '',
     text: '',
-    author: user.username,
+    author: user?.username,
   })
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
 
   const handleInput = (e) => {
     setPost({

@@ -1,10 +1,14 @@
 import { formatDate } from '../helperFunctions';
 import { useState, useEffect } from 'react';
 
-function Comments({postId}) {
-  const [comments, setComments] = useState()
+type CommentsProps = {
+  postId: string
+}
+
+function Comments({postId}: CommentsProps) {
+  const [comments, setComments] = useState([])
   const [commentInput, setCommentInput] = useState()
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -18,7 +22,7 @@ function Comments({postId}) {
     fetchComments()
   }, [])
 
-  const deleteComment = async (id) => {
+  const deleteComment = async (id: string) => {
     const response = await fetch(`http://localhost:3000/posts/${postId}/comments/${id}`, {
       method: 'DELETE'
     })
@@ -27,7 +31,7 @@ function Comments({postId}) {
     }
   }
 
-  const updateComment = async (e, id) => {
+  const updateComment = async (e, id: string) => {
     e.preventDefault()
     console.log(commentInput)
     const response = await fetch(`http://localhost:3000/posts/${postId}/comments/${id}`, {

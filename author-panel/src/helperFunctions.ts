@@ -1,4 +1,4 @@
-const formatDate = (timestamp) => {
+const formatDate = (timestamp: string) => {
   let stringDate = new Date(timestamp).toLocaleString('en-us', {
     month: "short",
     day: "2-digit",

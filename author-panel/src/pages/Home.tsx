@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Home.css'
 
-function Home({logoutUser}) {
+type HomeProps = {
+  logoutUser: () => void
+}
+
+function Home({logoutUser}: HomeProps) {
   const [posts, setPosts] = useState()
   const [error, setError] = useState()
 
