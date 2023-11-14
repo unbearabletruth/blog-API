@@ -110,8 +110,7 @@ a:active {
   background-color: #6366f1;
 }
 
-.shallowButton:hover,
-.shallowButtonRed:hover{
+.shallowButton:hover{
   cursor: pointer;
   background-color: #eef2ff;
 }
