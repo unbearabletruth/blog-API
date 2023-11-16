@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { formatDate } from '../helperFunctions';
+import { PostData } from "../pages/Post";
 
-function PostCard({posts}){
+type PostCardProps = {
+  posts: PostData[]
+}
+
+function PostCard({posts}: PostCardProps){
   return(
     posts && posts.map(post => {
       return(

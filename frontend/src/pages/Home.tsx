@@ -1,9 +1,10 @@
 import PostCard from "../components/PostCard"
 import { useEffect, useState } from 'react'
 import '../assets/styles/Home.css'
+import { PostData } from "./Post"
 
 function Home(){
-  const [posts, setPosts] = useState()
+  const [posts, setPosts] = useState<PostData[]>([])
 
   useEffect(() => {
     const fetchPosts = async () => {

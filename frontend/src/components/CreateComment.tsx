@@ -8,7 +8,7 @@ function CreateComment() {
     text: '',
     author: '',
   })
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
   const {id} = useParams();
 
   const handleInput = (e) => {

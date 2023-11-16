@@ -6,15 +6,20 @@ import '../assets/styles/Post.css'
 import { formatDate } from '../helperFunctions';
 import { useCommentContext } from '../hooks/useCommentContext';
 
-type Post = {
-
+export type PostData = {
+  author: string
+  is_published: Boolean
+  text: string
+  title: string
+  _id: string
+  timestamp: string
 }
 
 function Post(){
-  const [post, setPost] = useState()
+  const [post, setPost] = useState<PostData | null>(null)
   const { comments, dispatch } = useCommentContext()
   const { id } = useParams();
-console.log(post)
+
   useEffect(() => {
     const fetchPost = async () => {
       const response = await fetch(`http://localhost:3000/posts/${id}`)
