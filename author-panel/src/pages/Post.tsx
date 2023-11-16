@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from "react-router-dom";
 import { formatDate } from '../helperFunctions';
 import '../assets/styles/Post.css'
-import Comments from '../components/comments';
+import Comments from '../components/Comments';
 
 export type PostData = {
   author: string
@@ -13,9 +13,14 @@ export type PostData = {
   timestamp: string
 }
 
+type FormData = {
+  title: string
+  text: string
+}
+
 function Post(){
   const [postData, setPostData] = useState<PostData | null>(null)
-  const [post, setPost] = useState(null)
+  const [formData, setFormData] = useState<FormData | null>(null)
   const { id } = useParams();
   const [status, setStatus] = useState('')
   const [isForm, setIsForm] = useState(false)
@@ -50,7 +55,7 @@ function Post(){
     e.preventDefault()
     const response = await fetch(`http://localhost:3000/posts/${id}`, {
       method: 'PATCH',
-      body: JSON.stringify(post),
+      body: JSON.stringify(formData),
       headers: {
         'Content-type': 'application/json'
       }
@@ -60,12 +65,8 @@ function Post(){
       setError(json.error)
     }
     if (response.ok) {
-      setPostData(post)
-      setPost({
-        ...post,
-        title: '',
-        text: ''
-      })
+      setPostData(json)
+      setPost(json)
       setError(null)
       setStatus('Updated')
       setIsForm(false)
@@ -73,10 +74,10 @@ function Post(){
   }
 
   const handleInput = (e) => {
-    setPost({
-      ...post,
+    setFormData({
+      ...formData,
       [e.target.name] : e.target.value
-    })
+    } as FormData)
   }
 
   return(
@@ -101,7 +102,7 @@ function Post(){
               name="title"
               onChange={handleInput}
               id="titleInput"
-              value={post.title}
+              value={formData?.title}
             >
             </input>
             <textarea 
@@ -109,7 +110,7 @@ function Post(){
               name="text" 
               onChange={handleInput}
               id="textPostInput"
-              value={post.text}
+              value={formData?.text}
             >
             </textarea>
             <div className='postFormButtons'>
