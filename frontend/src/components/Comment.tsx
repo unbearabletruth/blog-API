@@ -1,6 +1,11 @@
 import { formatDate } from '../helperFunctions';
+import { CommentTypes } from '../context/CommentContext';
 
-function Comment({comments}){
+type CommentProps = {
+  comments: CommentTypes[]
+}
+
+function Comment({comments}: CommentProps){
   return(
     comments && comments.map(comment => {
       return(
