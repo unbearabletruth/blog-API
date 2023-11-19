@@ -33,7 +33,7 @@ function Post(){
       const json = await response.json()
       if (response.ok) {
         setPostData(json)
-        setPost(json)
+        setFormData(json)
       }
     }
 
@@ -66,7 +66,7 @@ function Post(){
     }
     if (response.ok) {
       setPostData(json)
-      setPost(json)
+      setFormData(json)
       setError(null)
       setStatus('Updated')
       setIsForm(false)
